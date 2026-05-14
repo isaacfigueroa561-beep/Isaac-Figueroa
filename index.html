@@ -45,6 +45,7 @@
             <ul class="nav-menu">
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#pricing" class="nav-link">Pricing</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
@@ -112,6 +113,135 @@
         </div>
     </section>
 
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2>Service Pricing</h2>
+            <p class="pricing-subtitle">Transparent pricing for small business solutions</p>
+
+            <div class="pricing-grid">
+                <article class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Landing Page</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">999</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Single responsive page</li>
+                        <li>Mobile optimized</li>
+                        <li>SEO optimized</li>
+                        <li>Contact form</li>
+                        <li>3 revisions included</li>
+                    </ul>
+                    <a href="#book-call" class="pricing-btn">Get Started</a>
+                </article>
+
+                <article class="pricing-card featured">
+                    <div class="pricing-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Website</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">2,499</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>5-7 page responsive website</li>
+                        <li>Mobile first design</li>
+                        <li>Full SEO optimization</li>
+                        <li>Contact form integration</li>
+                        <li>Blog section</li>
+                        <li>5 revisions included</li>
+                    </ul>
+                    <a href="#book-call" class="pricing-btn primary">Book Now</a>
+                </article>
+
+                <article class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>E-Commerce Site</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">4,999</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Product showcase</li>
+                        <li>Shopping cart integration</li>
+                        <li>Payment processing</li>
+                        <li>Inventory management</li>
+                        <li>SEO + Analytics</li>
+                        <li>7 revisions included</li>
+                    </ul>
+                    <a href="#book-call" class="pricing-btn">Get Started</a>
+                </article>
+
+                <article class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Logo & Branding</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">799</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Logo design</li>
+                        <li>Color palette</li>
+                        <li>Typography guide</li>
+                        <li>Brand guidelines</li>
+                        <li>Social media assets</li>
+                        <li>Unlimited revisions</li>
+                    </ul>
+                    <a href="#book-call" class="pricing-btn">Get Started</a>
+                </article>
+
+                <article class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Web Redesign</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">3,499</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Modern design overhaul</li>
+                        <li>Improved UX/UI</li>
+                        <li>Mobile optimization</li>
+                        <li>Performance boost</li>
+                        <li>SEO improvements</li>
+                        <li>6 revisions included</li>
+                    </ul>
+                    <a href="#book-call" class="pricing-btn">Get Started</a>
+                </article>
+
+                <article class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Custom Project</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">5,000</span>
+                        </div>
+                        <p class="price-note">Starting at</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Tailored solutions</li>
+                        <li>Complex functionality</li>
+                        <li>Advanced features</li>
+                        <li>Dedicated support</li>
+                        <li>Post-launch support</li>
+                        <li>Flexible revisions</li>
+                    </ul>
+                    <a href="#book-call" class="pricing-btn">Request Quote</a>
+                </article>
+            </div>
+
+            <div class="pricing-note">
+                <p>💡 All projects include responsive design, SEO optimization, and fast loading times. Need something custom? Let's discuss your project requirements.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Skills Section -->
     <section id="skills" class="skills">
         <div class="container">
@@ -150,11 +280,78 @@
         </div>
     </section>
 
+    <!-- Book a Call Section -->
+    <section id="book-call" class="book-call">
+        <div class="container">
+            <h2>Ready to Get Started?</h2>
+            <p>Schedule a free consultation call to discuss your project and get a personalized quote</p>
+
+            <div class="booking-options">
+                <div class="booking-card">
+                    <h3>📅 Schedule a Call</h3>
+                    <p>Choose a time that works best for you</p>
+                    <a href="https://calendly.com/isaacfigueroa" target="_blank" rel="noopener noreferrer" class="booking-btn">Book on Calendly</a>
+                </div>
+
+                <div class="booking-card">
+                    <h3>📧 Request a Quote</h3>
+                    <p>Tell us about your project and get a custom quote</p>
+                    <button class="booking-btn" onclick="toggleQuoteForm()">Get a Quote</button>
+                </div>
+            </div>
+
+            <!-- Quick Quote Form -->
+            <div id="quote-form" class="quote-form" style="display: none;">
+                <form onsubmit="handleQuoteSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Company/Business</label>
+                        <input type="text" id="company" name="company">
+                    </div>
+                    <div class="form-group">
+                        <label for="project-type">Project Type</label>
+                        <select id="project-type" name="project-type" required>
+                            <option value="">Select a project type</option>
+                            <option value="Landing Page">Landing Page</option>
+                            <option value="Website">Website</option>
+                            <option value="E-Commerce">E-Commerce Site</option>
+                            <option value="Logo & Branding">Logo & Branding</option>
+                            <option value="Web Redesign">Web Redesign</option>
+                            <option value="Custom Project">Custom Project</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">Budget Range</label>
+                        <select id="budget" name="budget">
+                            <option value="">Select budget range</option>
+                            <option value="Under $1000">Under $1,000</option>
+                            <option value="$1000-$3000">$1,000 - $3,000</option>
+                            <option value="$3000-$5000">$3,000 - $5,000</option>
+                            <option value="$5000+">$5,000+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Project Details</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Tell us about your project..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Quote Request</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2>Get In Touch</h2>
-            <p>I'd love to hear from you. Feel free to reach out for collaborations or inquiries.</p>
+            <h2>Other Ways to Reach Me</h2>
+            <p>Feel free to get in touch via email or connect on social media</p>
             <a href="mailto:contact@isaacfigueroa.com" class="cta-button">Send an Email</a>
         </div>
     </section>
@@ -188,6 +385,33 @@
         "jobTitle": "Professional Developer",
         "description": "Professional portfolio showcasing projects and expertise"
     }
+    </script>
+
+    <!-- Form Handling Scripts -->
+    <script>
+        function toggleQuoteForm() {
+            const form = document.getElementById('quote-form');
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+            if (form.style.display === 'block') {
+                form.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function handleQuoteSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const company = document.getElementById('company').value;
+            const projectType = document.getElementById('project-type').value;
+            const budget = document.getElementById('budget').value;
+            const message = document.getElementById('message').value;
+
+            const subject = `Quote Request - ${projectType}`;
+            const body = `New Quote Request:\n\nName: ${name}\nEmail: ${email}\nCompany: ${company}\nProject Type: ${projectType}\nBudget: ${budget}\n\nMessage:\n${message}`;
+
+            window.location.href = `mailto:contact@isaacfigueroa.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
     </script>
 
     <!-- Analytics Placeholder (add your analytics code here) -->
