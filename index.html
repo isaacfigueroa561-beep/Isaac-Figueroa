@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CapitalFlow - Modern Finance Platform</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-content">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <path d="M16 2L2 8V16C2 24.84 16 30 16 30s14-5.16 14-14V8L16 2Z" stroke="currentColor" stroke-width="2"/>
+                        <path d="M10 16l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>CapitalFlow</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#" class="nav-link active" data-section="dashboard">Dashboard</a>
+                    <a href="#" class="nav-link" data-section="portfolio">Portfolio</a>
+                    <a href="#" class="nav-link" data-section="markets">Markets</a>
+                    <a href="#" class="nav-link" data-section="trade">Trade</a>
+                </div>
+                <div class="nav-right">
+                    <button class="search-btn">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 12l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="user-menu">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User" class="avatar">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section active">
+                <div class="section-header">
+                    <h1>Dashboard</h1>
+                    <div class="time-period">
+                        <button class="period-btn active">1D</button>
+                        <button class="period-btn">1W</button>
+                        <button class="period-btn">1M</button>
+                        <button class="period-btn">1Y</button>
+                        <button class="period-btn">All</button>
+                    </div>
+                </div>
+
+                <!-- Portfolio Overview -->
+                <div class="portfolio-card card-glow">
+                    <div class="portfolio-header">
+                        <div>
+                            <p class="label">Total Portfolio Value</p>
+                            <h2 class="portfolio-value" id="portfolioValue">$124,586.42</h2>
+                        </div>
+                        <div class="portfolio-change">
+                            <span class="change-value positive" id="portfolioChange">+$2,485.20</span>
+                            <span class="change-percent positive" id="portfolioPercent">+2.04%</span>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="portfolioChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon cash">💰</div>
+                        <div class="stat-content">
+                            <p class="label">Buying Power</p>
+                            <h3>$32,450.00</h3>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon gain">📈</div>
+                        <div class="stat-content">
+                            <p class="label">Today's Gain</p>
+                            <h3 class="positive">+$1,245.50</h3>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon return">🎯</div>
+                        <div class="stat-content">
+                            <p class="label">Return</p>
+                            <h3 class="positive">+24.5%</h3>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon watching">⭐</div>
+                        <div class="stat-content">
+                            <p class="label">Watchlist</p>
+                            <h3>12 stocks</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Holdings -->
+                <div class="holdings-section">
+                    <h3>Your Holdings</h3>
+                    <div class="holdings-list">
+                        <div class="holding-item" style="--delay: 0">
+                            <div class="holding-info">
+                                <div>
+                                    <h4>Apple Inc.</h4>
+                                    <p class="symbol">AAPL</p>
+                                </div>
+                                <span class="shares">24 shares</span>
+                            </div>
+                            <div class="holding-value">
+                                <p>$4,248.50</p>
+                                <span class="positive">+$245.20 (+6.1%)</span>
+                            </div>
+                        </div>
+                        <div class="holding-item" style="--delay: 1">
+                            <div class="holding-info">
+                                <div>
+                                    <h4>Tesla Inc.</h4>
+                                    <p class="symbol">TSLA</p>
+                                </div>
+                                <span class="shares">15 shares</span>
+                            </div>
+                            <div class="holding-value">
+                                <p>$3,825.75</p>
+                                <span class="positive">+$385.50 (+11.2%)</span>
+                            </div>
+                        </div>
+                        <div class="holding-item" style="--delay: 2">
+                            <div class="holding-info">
+                                <div>
+                                    <h4>Microsoft Corp.</h4>
+                                    <p class="symbol">MSFT</p>
+                                </div>
+                                <span class="shares">18 shares</span>
+                            </div>
+                            <div class="holding-value">
+                                <p>$5,628.00</p>
+                                <span class="positive">+$428.75 (+8.2%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Portfolio Section -->
+            <section id="portfolio" class="section">
+                <div class="section-header">
+                    <h1>Portfolio Breakdown</h1>
+                </div>
+
+                <div class="portfolio-breakdown">
+                    <div class="allocation-card">
+                        <h3>Asset Allocation</h3>
+                        <canvas id="allocationChart" class="pie-chart"></canvas>
+                    </div>
+
+                    <div class="sector-distribution">
+                        <h3>Sector Distribution</h3>
+                        <div class="sector-bars">
+                            <div class="sector-item">
+                                <div class="sector-info">
+                                    <span class="sector-name">Technology</span>
+                                    <span class="sector-percent">45%</span>
+                                </div>
+                                <div class="sector-bar">
+                                    <div class="sector-fill" style="width: 45%; --color: #3B82F6;"></div>
+                                </div>
+                            </div>
+                            <div class="sector-item">
+                                <div class="sector-info">
+                                    <span class="sector-name">Healthcare</span>
+                                    <span class="sector-percent">25%</span>
+                                </div>
+                                <div class="sector-bar">
+                                    <div class="sector-fill" style="width: 25%; --color: #10B981;"></div>
+                                </div>
+                            </div>
+                            <div class="sector-item">
+                                <div class="sector-info">
+                                    <span class="sector-name">Finance</span>
+                                    <span class="sector-percent">20%</span>
+                                </div>
+                                <div class="sector-bar">
+                                    <div class="sector-fill" style="width: 20%; --color: #F59E0B;"></div>
+                                </div>
+                            </div>
+                            <div class="sector-item">
+                                <div class="sector-info">
+                                    <span class="sector-name">Energy</span>
+                                    <span class="sector-percent">10%</span>
+                                </div>
+                                <div class="sector-bar">
+                                    <div class="sector-fill" style="width: 10%; --color: #EF4444;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Markets Section -->
+            <section id="markets" class="section">
+                <div class="section-header">
+                    <h1>Markets</h1>
+                    <input type="text" class="search-input" placeholder="Search stocks, ETFs...">
+                </div>
+
+                <div class="market-indices">
+                    <h3>Market Indices</h3>
+                    <div class="indices-grid">
+                        <div class="index-card">
+                            <div class="index-header">
+                                <h4>S&P 500</h4>
+                                <span class="index-symbol">^GSPC</span>
+                            </div>
+                            <p class="index-value">5,847.50</p>
+                            <span class="positive">+2.4%</span>
+                        </div>
+                        <div class="index-card">
+                            <div class="index-header">
+                                <h4>NASDAQ</h4>
+                                <span class="index-symbol">^IXIC</span>
+                            </div>
+                            <p class="index-value">18,432.75</p>
+                            <span class="positive">+3.2%</span>
+                        </div>
+                        <div class="index-card">
+                            <div class="index-header">
+                                <h4>Dow Jones</h4>
+                                <span class="index-symbol">^DJI</span>
+                            </div>
+                            <p class="index-value">44,821.00</p>
+                            <span class="positive">+1.8%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="trending-section">
+                    <h3>Trending Stocks</h3>
+                    <div class="stocks-list">
+                        <div class="stock-item">
+                            <div class="stock-header">
+                                <div class="stock-info">
+                                    <h4>Nvidia Corporation</h4>
+                                    <p>NVDA</p>
+                                </div>
+                                <div class="stock-price">
+                                    <p>$875.43</p>
+                                    <span class="positive">+4.2%</span>
+                                </div>
+                            </div>
+                            <div class="stock-mini-chart">
+                                <svg width="100%" height="30" viewBox="0 0 100 30" class="mini-chart">
+                                    <polyline points="0,20 10,18 20,15 30,14 40,12 50,8 60,10 70,6 80,5 90,8 100,3"
+                                        fill="none" stroke="#10B981" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="stock-item">
+                            <div class="stock-header">
+                                <div class="stock-info">
+                                    <h4>Magnificent Seven AI</h4>
+                                    <p>AITECH</p>
+                                </div>
+                                <div class="stock-price">
+                                    <p>$342.18</p>
+                                    <span class="positive">+3.5%</span>
+                                </div>
+                            </div>
+                            <div class="stock-mini-chart">
+                                <svg width="100%" height="30" viewBox="0 0 100 30" class="mini-chart">
+                                    <polyline points="0,15 10,14 20,13 30,11 40,10 50,8 60,6 70,5 80,4 90,2 100,1"
+                                        fill="none" stroke="#10B981" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="stock-item">
+                            <div class="stock-header">
+                                <div class="stock-info">
+                                    <h4>Meta Platforms</h4>
+                                    <p>META</p>
+                                </div>
+                                <div class="stock-price">
+                                    <p>$504.80</p>
+                                    <span class="negative">-2.1%</span>
+                                </div>
+                            </div>
+                            <div class="stock-mini-chart">
+                                <svg width="100%" height="30" viewBox="0 0 100 30" class="mini-chart">
+                                    <polyline points="0,10 10,12 20,14 30,16 40,18 50,20 60,22 70,24 80,26 90,28 100,30"
+                                        fill="none" stroke="#EF4444" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Trade Section -->
+            <section id="trade" class="section">
+                <div class="section-header">
+                    <h1>Trade</h1>
+                </div>
+
+                <div class="trade-container">
+                    <div class="trade-form-card">
+                        <h3>Place Order</h3>
+                        <form class="trade-form">
+                            <div class="form-group">
+                                <label>Stock Symbol</label>
+                                <div class="input-group">
+                                    <input type="text" placeholder="AAPL" maxlength="6" id="tradeSymbol">
+                                    <span class="input-addon">USD</span>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Order Type</label>
+                                    <select id="orderType">
+                                        <option>Market</option>
+                                        <option>Limit</option>
+                                        <option>Stop Loss</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Time in Force</label>
+                                    <select>
+                                        <option>Day</option>
+                                        <option>Good Till Cancel</option>
+                                        <option>Immediate or Cancel</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Quantity</label>
+                                    <input type="number" placeholder="10" id="tradeQuantity">
+                                </div>
+                                <div class="form-group">
+                                    <label>Price</label>
+                                    <input type="number" placeholder="175.50" id="tradePrice">
+                                </div>
+                            </div>
+
+                            <div class="order-preview">
+                                <div class="preview-item">
+                                    <span>Estimated Cost:</span>
+                                    <span class="preview-value">$1,755.00</span>
+                                </div>
+                                <div class="preview-item">
+                                    <span>Commission:</span>
+                                    <span class="preview-value">$0.00</span>
+                                </div>
+                                <div class="preview-item">
+                                    <span>Total:</span>
+                                    <span class="preview-value">$1,755.00</span>
+                                </div>
+                            </div>
+
+                            <div class="order-buttons">
+                                <button type="button" class="btn-secondary">Cancel</button>
+                                <button type="button" class="btn-primary btn-buy">Buy AAPL</button>
+                                <button type="button" class="btn-secondary btn-sell">Sell AAPL</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="trade-details-card">
+                        <h3>Stock Details</h3>
+                        <div class="stock-detail">
+                            <div class="detail-header">
+                                <h4 id="detailSymbol">AAPL</h4>
+                                <div class="detail-price">
+                                    <p id="detailPrice">$175.50</p>
+                                    <span class="positive" id="detailChange">+2.45%</span>
+                                </div>
+                            </div>
+                            <canvas id="detailChart" height="150"></canvas>
+                            <div class="detail-stats">
+                                <div class="stat">
+                                    <span class="label">Open:</span>
+                                    <span>$173.20</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">High:</span>
+                                    <span>$176.80</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">Low:</span>
+                                    <span>$172.45</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">Volume:</span>
+                                    <span>52.3M</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">52W High:</span>
+                                    <span>$199.62</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">52W Low:</span>
+                                    <span>$124.84</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
