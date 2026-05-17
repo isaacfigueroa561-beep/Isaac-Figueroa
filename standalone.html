@@ -1,0 +1,1737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CapitalFlow - Modern Finance Platform</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #000;
+    --primary-light: #1a1a1a;
+    --secondary: #0066cc;
+    --secondary-light: #3385ff;
+    --background: #ffffff;
+    --background-secondary: #f8fafc;
+    --border: #e2e8f0;
+    --text-primary: #1a202c;
+    --text-secondary: #64748b;
+    --positive: #10b981;
+    --negative: #ef4444;
+    --warning: #f59e0b;
+    --success-bg: rgba(16, 185, 129, 0.1);
+    --glow: 0 0 30px rgba(0, 102, 204, 0.15);
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary: #ffffff;
+        --primary-light: #f0f0f0;
+        --background: #0f172a;
+        --background-secondary: #1e293b;
+        --border: #334155;
+        --text-primary: #f1f5f9;
+        --text-secondary: #94a3b8;
+    }
+}
+
+html, body {
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    background: var(--background);
+    color: var(--text-primary);
+    overflow-x: hidden;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.navbar {
+    background: var(--background);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.8);
+}
+
+@media (prefers-color-scheme: dark) {
+    .navbar {
+        background: rgba(15, 23, 42, 0.8);
+    }
+}
+
+.nav-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary);
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.logo svg {
+    color: var(--secondary);
+    animation: logoFloat 3s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-4px); }
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    flex: 1;
+}
+
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+    transition: all var(--transition);
+    position: relative;
+    cursor: pointer;
+}
+
+.nav-link:hover {
+    color: var(--primary);
+}
+
+.nav-link.active {
+    color: var(--secondary);
+    border-bottom-color: var(--secondary);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-shrink: 0;
+}
+
+.search-btn, .user-menu {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: all var(--transition);
+}
+
+.search-btn:hover, .user-menu:hover {
+    background: var(--background-secondary);
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-menu {
+    gap: 0.75rem;
+}
+
+.main-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 2rem;
+}
+
+.main-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.main-content::-webkit-scrollbar-track {
+    background: var(--background);
+}
+
+.main-content::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+}
+
+.main-content::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+.section {
+    display: none;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.section-header h1 {
+    font-size: 2rem;
+    margin-bottom: 0;
+}
+
+.time-period {
+    display: flex;
+    gap: 0.5rem;
+    background: var(--background-secondary);
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+}
+
+.period-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-radius: 0.4rem;
+    transition: all var(--transition);
+    font-weight: 500;
+}
+
+.period-btn.active {
+    background: var(--background);
+    color: var(--secondary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.period-btn:hover {
+    color: var(--primary);
+}
+
+.card-glow {
+    box-shadow: var(--glow);
+}
+
+.portfolio-card {
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: all var(--transition);
+    animation: slideInDown 0.6s ease-out;
+}
+
+.portfolio-card:hover {
+    border-color: var(--secondary);
+    transform: translateY(-4px);
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.portfolio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.portfolio-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 0;
+}
+
+.portfolio-change {
+    text-align: right;
+}
+
+.change-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.change-value.positive {
+    color: var(--positive);
+}
+
+.change-value.negative {
+    color: var(--negative);
+}
+
+.change-percent {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.change-percent.positive {
+    color: var(--positive);
+}
+
+.change-percent.negative {
+    color: var(--negative);
+}
+
+.chart-container {
+    height: 250px;
+    margin: 0 -2rem -2rem -2rem;
+    position: relative;
+}
+
+#portfolioChart {
+    max-height: 250px !important;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all var(--transition);
+    animation: slideUp 0.6s ease-out;
+    animation-fill-mode: both;
+}
+
+.stat-card:nth-child(1) { animation-delay: 0.1s; }
+.stat-card:nth-child(2) { animation-delay: 0.2s; }
+.stat-card:nth-child(3) { animation-delay: 0.3s; }
+.stat-card:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stat-card:hover {
+    border-color: var(--secondary);
+    transform: translateY(-4px);
+    box-shadow: var(--glow);
+}
+
+.stat-icon {
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem;
+    flex-shrink: 0;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+.stat-icon.cash { animation-delay: 0s; }
+.stat-icon.gain { animation-delay: 0.2s; }
+.stat-icon.return { animation-delay: 0.4s; }
+.stat-icon.watching { animation-delay: 0.6s; }
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.stat-content h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.stat-content h3.positive {
+    color: var(--positive);
+}
+
+.holdings-section {
+    margin-top: 3rem;
+}
+
+.holdings-section h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+}
+
+.holdings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.holding-item {
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all var(--transition);
+    animation: slideInLeft 0.6s ease-out;
+    animation-fill-mode: both;
+    animation-delay: calc(0.1s * var(--delay));
+    cursor: pointer;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.holding-item:hover {
+    border-color: var(--secondary);
+    transform: translateX(8px);
+    box-shadow: var(--glow);
+}
+
+.holding-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    flex: 1;
+}
+
+.holding-info h4 {
+    font-size: 1rem;
+    margin: 0 0 0.25rem 0;
+    color: var(--primary);
+}
+
+.holding-info .symbol {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+.shares {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.holding-value {
+    text-align: right;
+}
+
+.holding-value p {
+    margin: 0 0 0.25rem 0;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.holding-value span {
+    display: block;
+    font-size: 0.875rem;
+}
+
+.portfolio-breakdown {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.allocation-card {
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 2rem;
+    animation: slideInDown 0.6s ease-out;
+}
+
+.allocation-card h3 {
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+}
+
+.sector-distribution {
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 2rem;
+    animation: slideInDown 0.6s ease-out 0.1s both;
+}
+
+.sector-distribution h3 {
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+}
+
+.sector-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.sector-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.sector-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sector-name {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.sector-percent {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.sector-bar {
+    height: 8px;
+    background: var(--background-secondary);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.sector-fill {
+    height: 100%;
+    border-radius: 4px;
+    animation: fillBar 1s ease-out;
+    background: var(--color);
+}
+
+@keyframes fillBar {
+    from { width: 0 !important; }
+}
+
+.market-indices {
+    margin-bottom: 2rem;
+}
+
+.market-indices h3 {
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.indices-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.index-card {
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: all var(--transition);
+    animation: slideUp 0.6s ease-out;
+    animation-fill-mode: both;
+}
+
+.index-card:nth-child(1) { animation-delay: 0s; }
+.index-card:nth-child(2) { animation-delay: 0.1s; }
+.index-card:nth-child(3) { animation-delay: 0.2s; }
+
+.index-card:hover {
+    border-color: var(--secondary);
+    transform: translateY(-4px);
+    box-shadow: var(--glow);
+}
+
+.index-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.index-header h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--primary);
+}
+
+.index-symbol {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.index-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 0.5rem 0;
+}
+
+.trending-section {
+    margin-top: 2rem;
+}
+
+.trending-section h3 {
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.stocks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.stock-item {
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: all var(--transition);
+    animation: slideInLeft 0.6s ease-out;
+    animation-fill-mode: both;
+    cursor: pointer;
+}
+
+.stock-item:nth-child(1) { animation-delay: 0s; }
+.stock-item:nth-child(2) { animation-delay: 0.1s; }
+.stock-item:nth-child(3) { animation-delay: 0.2s; }
+
+.stock-item:hover {
+    border-color: var(--secondary);
+    transform: translateX(8px);
+    box-shadow: var(--glow);
+}
+
+.stock-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.stock-info h4 {
+    margin: 0 0 0.25rem 0;
+    color: var(--primary);
+}
+
+.stock-info p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.stock-price {
+    text-align: right;
+}
+
+.stock-price p {
+    margin: 0;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.stock-price span {
+    display: block;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.stock-mini-chart {
+    height: 30px;
+    margin-top: 0.5rem;
+}
+
+.mini-chart {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.search-input {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    background: var(--background);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    transition: all var(--transition);
+    max-width: 300px;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--secondary);
+    box-shadow: var(--glow);
+}
+
+.search-input::placeholder {
+    color: var(--text-secondary);
+}
+
+.trade-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.trade-form-card {
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 2rem;
+    animation: slideInLeft 0.6s ease-out;
+}
+
+.trade-details-card {
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 2rem;
+    animation: slideInRight 0.6s ease-out;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.trade-form-card h3,
+.trade-details-card h3 {
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    background: var(--background);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    transition: all var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--secondary);
+    box-shadow: var(--glow);
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-group input {
+    flex: 1;
+}
+
+.input-addon {
+    position: absolute;
+    right: 1rem;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    pointer-events: none;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-row .form-group {
+    margin-bottom: 0;
+}
+
+.order-preview {
+    background: var(--background-secondary);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.preview-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    color: var(--text-secondary);
+}
+
+.preview-item:last-child {
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    margin-top: 1rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.preview-value {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition);
+    font-size: 0.95rem;
+}
+
+.btn-primary {
+    background: var(--secondary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--secondary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 102, 204, 0.3);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: var(--background-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+    background: var(--border);
+    transform: translateY(-2px);
+}
+
+.btn-buy {
+    background: var(--positive);
+    color: white;
+}
+
+.btn-buy:hover {
+    background: #059669;
+    box-shadow: 0 8px 16px rgba(16, 185, 129, 0.3);
+}
+
+.btn-sell {
+    background: var(--negative);
+    color: white;
+}
+
+.btn-sell:hover {
+    background: #dc2626;
+    box-shadow: 0 8px 16px rgba(239, 68, 68, 0.3);
+}
+
+.order-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.detail-header h4 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.detail-price {
+    text-align: right;
+}
+
+.detail-price p {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.detail-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.stat .label {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat span:last-child {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+#detailChart {
+    width: 100%;
+    margin: 1rem -2rem;
+    padding: 0 2rem;
+}
+
+@media (max-width: 1200px) {
+    .nav-links {
+        gap: 1rem;
+    }
+
+    .trade-container {
+        grid-template-columns: 1fr;
+    }
+
+    .portfolio-breakdown {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .order-buttons {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-content {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .nav-links {
+        order: 3;
+        flex-basis: 100%;
+        gap: 1rem;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .search-input {
+        max-width: 100%;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .portfolio-value {
+        font-size: 2rem;
+    }
+}
+
+.positive {
+    color: var(--positive);
+}
+
+.negative {
+    color: var(--negative);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.text-center {
+    text-align: center;
+}
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-content">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <path d="M16 2L2 8V16C2 24.84 16 30 16 30s14-5.16 14-14V8L16 2Z" stroke="currentColor" stroke-width="2"/>
+                        <path d="M10 16l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>CapitalFlow</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#" class="nav-link active" data-section="dashboard">Dashboard</a>
+                    <a href="#" class="nav-link" data-section="portfolio">Portfolio</a>
+                    <a href="#" class="nav-link" data-section="markets">Markets</a>
+                    <a href="#" class="nav-link" data-section="trade">Trade</a>
+                </div>
+                <div class="nav-right">
+                    <button class="search-btn">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 12l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="user-menu">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User" class="avatar">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section active">
+                <div class="section-header">
+                    <h1>Dashboard</h1>
+                    <div class="time-period">
+                        <button class="period-btn active">1D</button>
+                        <button class="period-btn">1W</button>
+                        <button class="period-btn">1M</button>
+                        <button class="period-btn">1Y</button>
+                        <button class="period-btn">All</button>
+                    </div>
+                </div>
+
+                <!-- Portfolio Overview -->
+                <div class="portfolio-card card-glow">
+                    <div class="portfolio-header">
+                        <div>
+                            <p class="label">Total Portfolio Value</p>
+                            <h2 class="portfolio-value" id="portfolioValue">$124,586.42</h2>
+                        </div>
+                        <div class="portfolio-change">
+                            <span class="change-value positive" id="portfolioChange">+$2,485.20</span>
+                            <span class="change-percent positive" id="portfolioPercent">+2.04%</span>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="portfolioChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon cash">💰</div>
+                        <div class="stat-content">
+                            <p class="label">Buying Power</p>
+                            <h3>$32,450.00</h3>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon gain">📈</div>
+                        <div class="stat-content">
+                            <p class="label">Today's Gain</p>
+                            <h3 class="positive">+$1,245.50</h3>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon return">🎯</div>
+                        <div class="stat-content">
+                            <p class="label">Return</p>
+                            <h3 class="positive">+24.5%</h3>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon watching">⭐</div>
+                        <div class="stat-content">
+                            <p class="label">Watchlist</p>
+                            <h3>12 stocks</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Holdings -->
+                <div class="holdings-section">
+                    <h3>Your Holdings</h3>
+                    <div class="holdings-list">
+                        <div class="holding-item" style="--delay: 0">
+                            <div class="holding-info">
+                                <div>
+                                    <h4>Apple Inc.</h4>
+                                    <p class="symbol">AAPL</p>
+                                </div>
+                                <span class="shares">24 shares</span>
+                            </div>
+                            <div class="holding-value">
+                                <p>$4,248.50</p>
+                                <span class="positive">+$245.20 (+6.1%)</span>
+                            </div>
+                        </div>
+                        <div class="holding-item" style="--delay: 1">
+                            <div class="holding-info">
+                                <div>
+                                    <h4>Tesla Inc.</h4>
+                                    <p class="symbol">TSLA</p>
+                                </div>
+                                <span class="shares">15 shares</span>
+                            </div>
+                            <div class="holding-value">
+                                <p>$3,825.75</p>
+                                <span class="positive">+$385.50 (+11.2%)</span>
+                            </div>
+                        </div>
+                        <div class="holding-item" style="--delay: 2">
+                            <div class="holding-info">
+                                <div>
+                                    <h4>Microsoft Corp.</h4>
+                                    <p class="symbol">MSFT</p>
+                                </div>
+                                <span class="shares">18 shares</span>
+                            </div>
+                            <div class="holding-value">
+                                <p>$5,628.00</p>
+                                <span class="positive">+$428.75 (+8.2%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Portfolio Section -->
+            <section id="portfolio" class="section">
+                <div class="section-header">
+                    <h1>Portfolio Breakdown</h1>
+                </div>
+
+                <div class="portfolio-breakdown">
+                    <div class="allocation-card">
+                        <h3>Asset Allocation</h3>
+                        <canvas id="allocationChart" class="pie-chart"></canvas>
+                    </div>
+
+                    <div class="sector-distribution">
+                        <h3>Sector Distribution</h3>
+                        <div class="sector-bars">
+                            <div class="sector-item">
+                                <div class="sector-info">
+                                    <span class="sector-name">Technology</span>
+                                    <span class="sector-percent">45%</span>
+                                </div>
+                                <div class="sector-bar">
+                                    <div class="sector-fill" style="width: 45%; --color: #3B82F6;"></div>
+                                </div>
+                            </div>
+                            <div class="sector-item">
+                                <div class="sector-info">
+                                    <span class="sector-name">Healthcare</span>
+                                    <span class="sector-percent">25%</span>
+                                </div>
+                                <div class="sector-bar">
+                                    <div class="sector-fill" style="width: 25%; --color: #10B981;"></div>
+                                </div>
+                            </div>
+                            <div class="sector-item">
+                                <div class="sector-info">
+                                    <span class="sector-name">Finance</span>
+                                    <span class="sector-percent">20%</span>
+                                </div>
+                                <div class="sector-bar">
+                                    <div class="sector-fill" style="width: 20%; --color: #F59E0B;"></div>
+                                </div>
+                            </div>
+                            <div class="sector-item">
+                                <div class="sector-info">
+                                    <span class="sector-name">Energy</span>
+                                    <span class="sector-percent">10%</span>
+                                </div>
+                                <div class="sector-bar">
+                                    <div class="sector-fill" style="width: 10%; --color: #EF4444;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Markets Section -->
+            <section id="markets" class="section">
+                <div class="section-header">
+                    <h1>Markets</h1>
+                    <input type="text" class="search-input" placeholder="Search stocks, ETFs...">
+                </div>
+
+                <div class="market-indices">
+                    <h3>Market Indices</h3>
+                    <div class="indices-grid">
+                        <div class="index-card">
+                            <div class="index-header">
+                                <h4>S&P 500</h4>
+                                <span class="index-symbol">^GSPC</span>
+                            </div>
+                            <p class="index-value">5,847.50</p>
+                            <span class="positive">+2.4%</span>
+                        </div>
+                        <div class="index-card">
+                            <div class="index-header">
+                                <h4>NASDAQ</h4>
+                                <span class="index-symbol">^IXIC</span>
+                            </div>
+                            <p class="index-value">18,432.75</p>
+                            <span class="positive">+3.2%</span>
+                        </div>
+                        <div class="index-card">
+                            <div class="index-header">
+                                <h4>Dow Jones</h4>
+                                <span class="index-symbol">^DJI</span>
+                            </div>
+                            <p class="index-value">44,821.00</p>
+                            <span class="positive">+1.8%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="trending-section">
+                    <h3>Trending Stocks</h3>
+                    <div class="stocks-list">
+                        <div class="stock-item">
+                            <div class="stock-header">
+                                <div class="stock-info">
+                                    <h4>Nvidia Corporation</h4>
+                                    <p>NVDA</p>
+                                </div>
+                                <div class="stock-price">
+                                    <p>$875.43</p>
+                                    <span class="positive">+4.2%</span>
+                                </div>
+                            </div>
+                            <div class="stock-mini-chart">
+                                <svg width="100%" height="30" viewBox="0 0 100 30" class="mini-chart">
+                                    <polyline points="0,20 10,18 20,15 30,14 40,12 50,8 60,10 70,6 80,5 90,8 100,3"
+                                        fill="none" stroke="#10B981" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="stock-item">
+                            <div class="stock-header">
+                                <div class="stock-info">
+                                    <h4>Magnificent Seven AI</h4>
+                                    <p>AITECH</p>
+                                </div>
+                                <div class="stock-price">
+                                    <p>$342.18</p>
+                                    <span class="positive">+3.5%</span>
+                                </div>
+                            </div>
+                            <div class="stock-mini-chart">
+                                <svg width="100%" height="30" viewBox="0 0 100 30" class="mini-chart">
+                                    <polyline points="0,15 10,14 20,13 30,11 40,10 50,8 60,6 70,5 80,4 90,2 100,1"
+                                        fill="none" stroke="#10B981" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="stock-item">
+                            <div class="stock-header">
+                                <div class="stock-info">
+                                    <h4>Meta Platforms</h4>
+                                    <p>META</p>
+                                </div>
+                                <div class="stock-price">
+                                    <p>$504.80</p>
+                                    <span class="negative">-2.1%</span>
+                                </div>
+                            </div>
+                            <div class="stock-mini-chart">
+                                <svg width="100%" height="30" viewBox="0 0 100 30" class="mini-chart">
+                                    <polyline points="0,10 10,12 20,14 30,16 40,18 50,20 60,22 70,24 80,26 90,28 100,30"
+                                        fill="none" stroke="#EF4444" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Trade Section -->
+            <section id="trade" class="section">
+                <div class="section-header">
+                    <h1>Trade</h1>
+                </div>
+
+                <div class="trade-container">
+                    <div class="trade-form-card">
+                        <h3>Place Order</h3>
+                        <form class="trade-form">
+                            <div class="form-group">
+                                <label>Stock Symbol</label>
+                                <div class="input-group">
+                                    <input type="text" placeholder="AAPL" maxlength="6" id="tradeSymbol">
+                                    <span class="input-addon">USD</span>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Order Type</label>
+                                    <select id="orderType">
+                                        <option>Market</option>
+                                        <option>Limit</option>
+                                        <option>Stop Loss</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Time in Force</label>
+                                    <select>
+                                        <option>Day</option>
+                                        <option>Good Till Cancel</option>
+                                        <option>Immediate or Cancel</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Quantity</label>
+                                    <input type="number" placeholder="10" id="tradeQuantity">
+                                </div>
+                                <div class="form-group">
+                                    <label>Price</label>
+                                    <input type="number" placeholder="175.50" id="tradePrice">
+                                </div>
+                            </div>
+
+                            <div class="order-preview">
+                                <div class="preview-item">
+                                    <span>Estimated Cost:</span>
+                                    <span class="preview-value">$1,755.00</span>
+                                </div>
+                                <div class="preview-item">
+                                    <span>Commission:</span>
+                                    <span class="preview-value">$0.00</span>
+                                </div>
+                                <div class="preview-item">
+                                    <span>Total:</span>
+                                    <span class="preview-value">$1,755.00</span>
+                                </div>
+                            </div>
+
+                            <div class="order-buttons">
+                                <button type="button" class="btn-secondary">Cancel</button>
+                                <button type="button" class="btn-primary btn-buy">Buy</button>
+                                <button type="button" class="btn-secondary btn-sell">Sell</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="trade-details-card">
+                        <h3>Stock Details</h3>
+                        <div class="stock-detail">
+                            <div class="detail-header">
+                                <h4 id="detailSymbol">AAPL</h4>
+                                <div class="detail-price">
+                                    <p id="detailPrice">$175.50</p>
+                                    <span class="positive" id="detailChange">+2.45%</span>
+                                </div>
+                            </div>
+                            <canvas id="detailChart" height="150"></canvas>
+                            <div class="detail-stats">
+                                <div class="stat">
+                                    <span class="label">Open:</span>
+                                    <span>$173.20</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">High:</span>
+                                    <span>$176.80</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">Low:</span>
+                                    <span>$172.45</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">Volume:</span>
+                                    <span>52.3M</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">52W High:</span>
+                                    <span>$199.62</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="label">52W Low:</span>
+                                    <span>$124.84</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+let portfolioChart = null;
+let allocationChart = null;
+let detailChart = null;
+
+document.addEventListener('DOMContentLoaded', () => {
+    initializeCharts();
+    initializeNavigation();
+    initializeInteractions();
+    initializePriceAnimations();
+    startPriceTicker();
+});
+
+function initializeNavigation() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('.section');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const sectionId = link.getAttribute('data-section');
+
+            navLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+
+            sections.forEach(s => s.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+        });
+    });
+}
+
+function initializeCharts() {
+    const portfolioCtx = document.getElementById('portfolioChart');
+    if (portfolioCtx) {
+        portfolioChart = new Chart(portfolioCtx, {
+            type: 'line',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Portfolio Value',
+                    data: [120000, 119500, 121000, 122100, 121500, 124000, 124586.42],
+                    borderColor: '#0066cc',
+                    backgroundColor: 'rgba(0, 102, 204, 0.1)',
+                    fill: true,
+                    tension: 0.4,
+                    borderWidth: 3,
+                    pointRadius: 6,
+                    pointBackgroundColor: '#0066cc',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 8,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        grid: { color: 'rgba(0, 0, 0, 0.05)' },
+                        ticks: {
+                            callback: (value) => '$' + (value / 1000).toFixed(0) + 'k'
+                        }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+    }
+
+    const allocationCtx = document.getElementById('allocationChart');
+    if (allocationCtx) {
+        allocationChart = new Chart(allocationCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Stocks', 'ETFs', 'Bonds', 'Cash'],
+                datasets: [{
+                    data: [55, 25, 15, 5],
+                    backgroundColor: [
+                        '#0066cc',
+                        '#10b981',
+                        '#f59e0b',
+                        '#8b5cf6'
+                    ],
+                    borderColor: '#fff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { padding: 20, font: { size: 12 } }
+                    }
+                }
+            }
+        });
+    }
+
+    const detailCtx = document.getElementById('detailChart');
+    if (detailCtx) {
+        detailChart = new Chart(detailCtx, {
+            type: 'line',
+            data: {
+                labels: ['9:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '1:00', '1:30', '2:00', '2:30', '3:00', '4:00'],
+                datasets: [{
+                    label: 'AAPL Price',
+                    data: [170, 172, 171.5, 173, 175, 174.5, 173, 175.5, 176.5, 175.8, 176.2, 175.5, 175.50],
+                    borderColor: '#10b981',
+                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                    fill: true,
+                    tension: 0.4,
+                    borderWidth: 2,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#10b981',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        grid: { color: 'rgba(0, 0, 0, 0.05)' }
+                    },
+                    x: {
+                        grid: { display: false }
+                    }
+                }
+            }
+        });
+    }
+}
+
+function initializeInteractions() {
+    const periodBtns = document.querySelectorAll('.period-btn');
+    periodBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            periodBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
+
+    const orderTypeSelect = document.getElementById('orderType');
+    const tradePrice = document.getElementById('tradePrice');
+
+    if (orderTypeSelect) {
+        orderTypeSelect.addEventListener('change', (e) => {
+            if (e.target.value === 'Market') {
+                tradePrice.disabled = true;
+                tradePrice.value = '';
+            } else {
+                tradePrice.disabled = false;
+            }
+        });
+    }
+
+    document.querySelectorAll('.stock-item').forEach(item => {
+        item.addEventListener('click', () => {
+            const stockInfo = item.querySelector('.stock-info h4').textContent;
+            document.getElementById('tradeSymbol').value = stockInfo.substring(0, 4).toUpperCase();
+        });
+    });
+}
+
+function initializePriceAnimations() {
+    setInterval(() => {
+        const portfolioValue = document.getElementById('portfolioValue');
+        if (portfolioValue) {
+            const currentValue = 124586.42;
+            const change = (Math.random() - 0.5) * 100;
+            const newValue = (currentValue + change).toFixed(2);
+            animateValue(portfolioValue, parseFloat(portfolioValue.textContent.replace('$', '').replace(',', '')), newValue);
+        }
+    }, 5000);
+}
+
+function animateValue(element, start, end) {
+    const duration = 500;
+    const startTime = Date.now();
+
+    const animate = () => {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const current = start + (end - start) * progress;
+        element.textContent = '$' + current.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+        if (progress < 1) {
+            requestAnimationFrame(animate);
+        }
+    };
+
+    animate();
+}
+
+function startPriceTicker() {
+    const holdings = [
+        { symbol: 'AAPL', price: 175.50, element: null },
+        { symbol: 'TSLA', price: 255.17, element: null },
+        { symbol: 'MSFT', price: 312.67, element: null }
+    ];
+
+    setInterval(() => {
+        document.querySelectorAll('.holding-item').forEach((item, i) => {
+            const changeEl = item.querySelector('.holding-value span');
+            if (changeEl) {
+                const change = (Math.random() - 0.5) * 5;
+                const className = change > 0 ? 'positive' : 'negative';
+                changeEl.className = className;
+                changeEl.textContent = (change > 0 ? '+' : '') + change.toFixed(1) + '%';
+            }
+        });
+    }, 2000);
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey || e.metaKey) {
+        const shortcuts = {
+            '1': 'dashboard',
+            '2': 'portfolio',
+            '3': 'markets',
+            '4': 'trade'
+        };
+
+        if (shortcuts[e.key]) {
+            document.querySelector(`[data-section="${shortcuts[e.key]}"]`).click();
+        }
+    }
+});
+    </script>
+</body>
+</html>
