@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alabanza - Notas para Jóvenes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f5f5 0%, #fafafa 100%);
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        header {
+            background: linear-gradient(135deg, #d966a6 0%, #c94a8e 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        header p {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .question-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+
+        .question-box h3 {
+            color: #d966a6;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .question-box p {
+            color: #4a90c8;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        h2 {
+            color: #d966a6;
+            font-size: 28px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #d966a6;
+            padding-bottom: 10px;
+        }
+
+        h2.secondary {
+            color: #4a90c8;
+            border-bottom-color: #4a90c8;
+        }
+
+        .definition-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .definition-list li {
+            padding: 12px 0;
+            padding-left: 30px;
+            font-size: 16px;
+            color: #333;
+            border-bottom: 1px solid #eee;
+        }
+
+        .definition-list li:last-child {
+            border-bottom: none;
+        }
+
+        .reason-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .reason-card {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .reason-card:hover {
+            border-color: #d966a6;
+            box-shadow: 0 5px 15px rgba(217, 102, 166, 0.1);
+        }
+
+        .reason-card .emoji {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .reason-card h4 {
+            color: #d966a6;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .reason-card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #fff9e6 100%);
+            border-left: 5px solid #ffc107;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 8px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .highlight-box strong {
+            color: #d966a6;
+        }
+
+        .effects-list {
+            background: #f0f8ff;
+            border-left: 5px solid #4a90c8;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .effects-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .effects-list li {
+            padding: 10px 0;
+            padding-left: 30px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .quote-box {
+            background: #e8f4f8;
+            border-left: 5px solid #4a90c8;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-style: italic;
+            color: #4a90c8;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #d966a6 0%, #c94a8e 100%);
+            color: white;
+            padding: 40px;
+            margin: 40px 0;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .step-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .step-list li {
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-left: 4px solid #d966a6;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .step-list li strong {
+            color: #d966a6;
+        }
+
+        .reflection {
+            background: #f5f0ff;
+            border-left: 5px solid #9c6bb5;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 8px;
+            line-height: 1.8;
+        }
+
+        footer {
+            background: #f8f9fa;
+            padding: 30px 40px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            border-top: 1px solid #eee;
+        }
+
+        .emoji-highlight {
+            font-size: 20px;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+            .reason-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .reason-grid {
+                grid-template-columns: 1fr;
+            }
+            header h1 {
+                font-size: 36px;
+            }
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎵 ALABANZA 🎵</h1>
+            <p>Una Herramienta Poderosa para Transformar tu Vida</p>
+        </header>
+
+        <div class="content">
+            <!-- Opening Question -->
+            <div class="question-box">
+                <h3>¿QUÉ ES LO PRIMERO QUE HACES CUANDO TE LEVANTAS?</h3>
+                <p>✨ Empieza DANDO GRACIAS ✨</p>
+            </div>
+
+            <!-- What is Praise Section -->
+            <h2>¿QUÉ ES LA ALABANZA?</h2>
+            <p style="margin-bottom: 20px; color: #666; font-size: 16px;">Hablar BIEN del otro en pocas palabras significa:</p>
+
+            <ul class="definition-list">
+                <li><span class="emoji-highlight">🎤</span> <strong>Hablar BIEN de Dios</strong></li>
+                <li><span class="emoji-highlight">🙏</span> <strong>Postrarse</strong> en reconocimiento</li>
+                <li><span class="emoji-highlight">❤️</span> <strong>Agradecer</strong> desde el alma (más profundo que solo hablar)</li>
+                <li><span class="emoji-highlight">⭐</span> <strong>Expresar lo que Dios HACE</strong></li>
+                <li><span class="emoji-highlight">👑</span> <strong>Reconocer QUIÉN es Dios</strong></li>
+                <li><span class="emoji-highlight">💬</span> <strong>La alabanza sale de mi BOCA</strong> (adoración es de mi vida entera)</li>
+                <li><span class="emoji-highlight">🌟</span> <strong>La ADORACIÓN es una forma de VIVIR</strong></li>
+            </ul>
+
+            <!-- 4 Reasons Section -->
+            <h2 class="secondary">4 RAZONES PARA ALABAR</h2>
+
+            <div class="reason-grid">
+                <div class="reason-card">
+                    <div class="emoji">☝️</div>
+                    <h4>DIOS ES DIGNO</h4>
+                    <p>La alabanza reconoce que Él merece toda nuestra atención y respeto.</p>
+                </div>
+
+                <div class="reason-card">
+                    <div class="emoji">🧠</div>
+                    <h4>LLENA TU MENTE DE VERDAD</h4>
+                    <p>Transforma tus pensamientos, reemplaza mentiras con la verdad de Dios.</p>
+                </div>
+
+                <div class="reason-card">
+                    <div class="emoji">🔎</div>
+                    <h4>MAGNIFICA A DIOS</h4>
+                    <p>La haces grande en tu propia vida y en tu círculo.</p>
+                </div>
+
+                <div class="reason-card">
+                    <div class="emoji">⛓️</div>
+                    <h4>ROMPE CADENAS</h4>
+                    <p>Rompe estructuras, viejos patrones, viejas historias. ¡Las cosas suceden!</p>
+                </div>
+            </div>
+
+            <!-- Important Note -->
+            <div class="highlight-box">
+                <strong>💡 DATO IMPORTANTE:</strong><br>
+                No es SOLO lo que sale de tu boca, sino <strong>CÓMO sale.</strong> La intención, la fe, el corazón detrás de tus palabras es lo que transforma.
+            </div>
+
+            <!-- What Happens When We Praise -->
+            <h2>¿QUÉ PASA CUANDO ALABAS?</h2>
+            <p style="margin-bottom: 20px; color: #666; font-size: 16px;">Cuando alabas suceden muchas cosas increíbles:</p>
+
+            <div class="effects-list">
+                <ul>
+                    <li><span class="emoji-highlight">🌍</span> <strong>Creas AMBIENTES</strong></li>
+                    <li><span class="emoji-highlight">💥</span> <strong>Rompes ESTRUCTURAS</strong></li>
+                    <li><span class="emoji-highlight">🔄</span> <strong>Transformas VIEJOS PATRONES</strong></li>
+                    <li><span class="emoji-highlight">✨</span> <strong>LAS COSAS SUCEDEN</strong> — porque es la ESENCIA DE DIOS</li>
+                    <li><span class="emoji-highlight">👥</span> <strong>Dios HABITA en la alabanza de su pueblo</strong></li>
+                </ul>
+            </div>
+
+            <div class="quote-box">
+                <strong>Hechos 16:25</strong> — Cuando Pablo y Silas alababan en la cárcel, Dios respondió.<br>
+                <strong>¿Hasta dónde llega tu fe cuando alabas?</strong>
+            </div>
+
+            <!-- How We Praise -->
+            <h2 class="secondary">¿CÓMO ALABAMOS?</h2>
+
+            <div class="highlight-box" style="background: #e8f4f8; border-left-color: #4a90c8;">
+                <span class="emoji-highlight">💬</span> <strong>Con nuestra BOCA, enviando un MENSAJE</strong>
+            </div>
+
+            <p style="color: #666; margin: 20px 0; font-size: 16px;">La alabanza:</p>
+            <ul class="step-list">
+                <li>✨ Es una <strong>disciplina espiritual</strong></li>
+                <li>✨ <strong>Empieza desde la mañana</strong></li>
+                <li>✨ Es una <strong>forma de vivir</strong></li>
+                <li>✨ <strong>¡Debería ser TODO EL TIEMPO!</strong></li>
+                <li>✨ <strong>El hijo alaba al padre</strong></li>
+            </ul>
+
+            <!-- Call to Action -->
+            <div class="cta-box">
+                🎵 ORDÉNALE A TU ALMA QUE ALABE 🎵
+            </div>
+
+            <!-- Final Reflection -->
+            <div class="reflection">
+                <h3 style="color: #9c6bb5; margin-bottom: 15px;">Reflexión Final</h3>
+                <p>La alabanza no es solo para momentos especiales. Es una disciplina espiritual que transforma tu día, tu semana, tu vida.</p>
+
+                <p style="margin-top: 15px;"><strong>Cada mañana, cuando te despiertes:</strong></p>
+                <ul class="step-list" style="margin-top: 15px;">
+                    <li><span class="emoji-highlight">✨</span> <strong>Da gracias</strong></li>
+                    <li><span class="emoji-highlight">🎤</span> <strong>Abre tu boca y alaba</strong></li>
+                    <li><span class="emoji-highlight">💪</span> <strong>Ordénale a tu alma que alabe</strong></li>
+                    <li><span class="emoji-highlight">🌟</span> <strong>Camina en una actitud de adoración</strong></li>
+                </ul>
+
+                <p style="margin-top: 20px; font-size: 18px; font-weight: 600; text-align: center; color: #d966a6;">
+                    ¡Que la alabanza sea el ambiente en el que vives!
+                </p>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>Notas para Grupo de Jóvenes</strong></p>
+            <p>Basado en Salmo 100 NTV</p>
+            <p style="margin-top: 10px; font-size: 12px;">Creado con ❤️ para inspirar la alabanza en tu vida</p>
+        </footer>
+    </div>
+</body>
+</html>
