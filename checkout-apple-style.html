@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V3 — Vigo MD</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: #ffffff;
+            color: #1d1d1d;
+            line-height: 1.6;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+
+        .hero p {
+            font-size: 28px;
+            color: #666666;
+            font-weight: 400;
+            max-width: 700px;
+            line-height: 1.4;
+            margin-bottom: 40px;
+        }
+
+        .product-hero-image {
+            width: 100%;
+            max-width: 500px;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 60px 0;
+            font-size: 18px;
+            color: #999999;
+            font-weight: 500;
+        }
+
+        /* SECTION */
+        .section {
+            width: 100%;
+            padding: 100px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 40px;
+            text-align: center;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            font-size: 20px;
+            color: #666666;
+            font-weight: 400;
+            text-align: center;
+            margin-bottom: 80px;
+            line-height: 1.6;
+        }
+
+        /* FEATURES GRID */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 100px;
+        }
+
+        .feature {
+            text-align: center;
+        }
+
+        .feature-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .feature-description {
+            font-size: 16px;
+            color: #666666;
+            line-height: 1.6;
+        }
+
+        /* PRICING SECTION */
+        .pricing-hero {
+            background: #ffffff;
+            padding: 120px 40px;
+            text-align: center;
+        }
+
+        .pricing-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .pricing-description {
+            font-size: 18px;
+            color: #666666;
+            margin-bottom: 60px;
+        }
+
+        /* PRICING CARDS */
+        .pricing-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .pricing-card {
+            background: #ffffff;
+            border: 2px solid #e5e5e5;
+            border-radius: 18px;
+            padding: 50px 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            border-color: #000000;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .pricing-card.selected {
+            border-color: #000000;
+            background: #f5f5f5;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing-badge {
+            display: inline-block;
+            background: #2d6633;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+        }
+
+        .pricing-card-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .pricing-card-subtitle {
+            font-size: 16px;
+            color: #666666;
+            margin-bottom: 30px;
+        }
+
+        .price-large {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .price-period {
+            font-size: 16px;
+            color: #666666;
+            margin-bottom: 40px;
+        }
+
+        .pricing-features {
+            text-align: left;
+            margin-bottom: 40px;
+            border-top: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 30px 0;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 14px;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .feature-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-item::before {
+            content: "✓";
+            color: #2d6633;
+            font-weight: 900;
+            flex-shrink: 0;
+        }
+
+        .cta-button {
+            width: 100%;
+            padding: 18px 24px;
+            background: #000000;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+        }
+
+        .cta-button:hover {
+            background: #333333;
+        }
+
+        .cta-button:active {
+            background: #000000;
+            transform: scale(0.98);
+        }
+
+        .pricing-card.secondary .cta-button {
+            background: #f5f5f5;
+            color: #000000;
+            border: 1px solid #e5e5e5;
+        }
+
+        .pricing-card.secondary .cta-button:hover {
+            background: #eeeeee;
+            border-color: #d9d9d9;
+        }
+
+        /* COMPARISON */
+        .comparison-section {
+            background: #f5f5f5;
+            padding: 100px 40px;
+            margin-top: 80px;
+        }
+
+        .comparison-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .comparison-title {
+            font-size: 40px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 80px;
+            letter-spacing: -1px;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .comparison-item h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .comparison-item ul {
+            list-style: none;
+        }
+
+        .comparison-item li {
+            font-size: 16px;
+            color: #666666;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .comparison-item li::before {
+            content: "−";
+            color: #dc2626;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .comparison-item.positive li::before {
+            content: "✓";
+            color: #2d6633;
+        }
+
+        .icon-before {
+            font-size: 24px;
+        }
+
+        .icon-after {
+            font-size: 24px;
+        }
+
+        /* FOOTER */
+        .footer-section {
+            text-align: center;
+            padding: 60px 40px;
+            background: #ffffff;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .footer-text {
+            font-size: 16px;
+            color: #666666;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero p {
+                font-size: 20px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .pricing-title {
+                font-size: 32px;
+            }
+
+            .price-large {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HERO -->
+    <section class="hero">
+        <h1>V3</h1>
+        <p>One powerful dose.<br>Maximum effect.</p>
+        <div class="product-hero-image">Product Visual</div>
+    </section>
+
+    <!-- KEY BENEFITS -->
+    <section class="section">
+        <h2 class="section-title">Why V3 Changes Everything</h2>
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-title">Brain & Body</div>
+                <p class="feature-description">Three actives working together for maximum effect where it matters most.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-title">10-15 Minutes</div>
+                <p class="feature-description">No waiting. Feel the difference in moments, not hours.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-title">Built Different</div>
+                <p class="feature-description">Prescribed by U.S. doctors. Personalized to you. Always evolving.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="pricing-hero">
+        <h2 class="pricing-title">Choose Your Plan</h2>
+        <p class="pricing-description">Start your treatment journey with the plan that works for you.</p>
+
+        <div class="pricing-container">
+            <div class="pricing-cards">
+                <!-- Card 1 -->
+                <div class="pricing-card selected">
+                    <div class="pricing-badge">Most Popular</div>
+                    <h3 class="pricing-card-title">Monthly</h3>
+                    <p class="pricing-card-subtitle">For everyday confidence</p>
+                    <div class="price-large">$67</div>
+                    <p class="price-period">First month • Usually $87</p>
+
+                    <div class="pricing-features">
+                        <div class="feature-item">6 doses per month</div>
+                        <div class="feature-item">Written prescription included</div>
+                        <div class="feature-item">Doctor consultation</div>
+                        <div class="feature-item">1:1 medical support</div>
+                        <div class="feature-item">24/7 clinical access</div>
+                        <div class="feature-item">Discreet private shipping</div>
+                    </div>
+
+                    <button class="cta-button">Get Started</button>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="pricing-card secondary">
+                    <div class="pricing-badge" style="background: transparent; color: #1d1d1d; border: 1px solid #1d1d1d;">Best Value</div>
+                    <h3 class="pricing-card-title">Bimonthly</h3>
+                    <p class="pricing-card-subtitle">Maximum savings</p>
+                    <div class="price-large">$147</div>
+                    <p class="price-period">Two months • Usually $187</p>
+
+                    <div class="pricing-features">
+                        <div class="feature-item">12 doses per month</div>
+                        <div class="feature-item">Written prescription included</div>
+                        <div class="feature-item">Doctor consultation</div>
+                        <div class="feature-item">1:1 medical support</div>
+                        <div class="feature-item">24/7 clinical access</div>
+                        <div class="feature-item">Discreet private shipping</div>
+                    </div>
+
+                    <button class="cta-button">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPARISON -->
+    <section class="comparison-section">
+        <div class="comparison-container">
+            <h2 class="comparison-title">Current vs. Refined</h2>
+
+            <div class="comparison-grid">
+                <div class="comparison-item">
+                    <h3>
+                        <span class="icon-before">❌</span>
+                        Current Design
+                    </h3>
+                    <ul>
+                        <li>Dense text blocks</li>
+                        <li>Small, hard-to-read fonts</li>
+                        <li>Everything feels cramped</li>
+                        <li>Hard to understand options</li>
+                        <li>Weak visual hierarchy</li>
+                        <li>Confusing decision path</li>
+                    </ul>
+                </div>
+
+                <div class="comparison-item positive">
+                    <h3>
+                        <span class="icon-after">✓</span>
+                        V3 Refined Design
+                    </h3>
+                    <ul>
+                        <li>Clean, minimal presentation</li>
+                        <li>Large, easily readable typography</li>
+                        <li>Generous whitespace throughout</li>
+                        <li>Clear pricing & options</li>
+                        <li>Strong visual focus</li>
+                        <li>Obvious next steps</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <section class="footer-section">
+        <p class="footer-text">
+            Personalized treatment prescribed by U.S. licensed doctors. One dose, one moment, one powerful experience.
+        </p>
+    </section>
+</body>
+</html>
