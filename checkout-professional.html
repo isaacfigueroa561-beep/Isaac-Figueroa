@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vigo MD Checkout — Professional Design</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: #f9fafb;
+            color: #1a1a1a;
+        }
+
+        .comparison-header {
+            background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+            padding: 60px 40px;
+            text-align: center;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .comparison-header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .comparison-header p {
+            font-size: 16px;
+            color: #6b7280;
+        }
+
+        .wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 40px;
+        }
+
+        /* ===== BEFORE ===== */
+        .before {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 12px 24px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .section-label.before-label {
+            color: #dc2626;
+            background: #fef2f2;
+        }
+
+        .section-label.after-label {
+            color: #16a34a;
+            background: #f0fdf4;
+        }
+
+        .icon-before::before {
+            content: "✕";
+            font-weight: 900;
+            font-size: 14px;
+        }
+
+        .icon-after::before {
+            content: "✓";
+            font-weight: 900;
+            font-size: 14px;
+        }
+
+        .before-content {
+            padding: 30px;
+        }
+
+        .before-product-area {
+            background: #f3f4f6;
+            height: 240px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            color: #9ca3af;
+            font-size: 14px;
+        }
+
+        .before h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .dense-text {
+            font-size: 13px;
+            line-height: 1.7;
+            color: #4b5563;
+            margin-bottom: 16px;
+        }
+
+        .features-old {
+            font-size: 12px;
+            line-height: 1.8;
+            color: #4b5563;
+            margin-bottom: 24px;
+        }
+
+        .price-section-old {
+            padding: 18px;
+            background: #f0fdf4;
+            border-radius: 8px;
+            border: 1px solid #dbeafe;
+            margin-bottom: 18px;
+        }
+
+        .price-label {
+            font-size: 12px;
+            color: #4b5563;
+            margin-bottom: 6px;
+        }
+
+        .price-amount {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .price-desc {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .cta-button {
+            width: 100%;
+            padding: 14px;
+            background: #16a34a;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .cta-button:hover {
+            background: #15803d;
+        }
+
+        /* ===== AFTER ===== */
+        .after {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .after-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            padding: 30px;
+        }
+
+        .product-showcase {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #f9fafb;
+            border-radius: 10px;
+            padding: 24px;
+        }
+
+        .product-image-area {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: linear-gradient(135deg, #f0f9ff 0%, #f0fdf4 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            color: #9ca3af;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .product-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-align: center;
+        }
+
+        .pricing-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .tab-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .tab-btn {
+            padding: 10px;
+            background: white;
+            border: 1.5px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #6b7280;
+        }
+
+        .tab-btn.active {
+            background: #1a1a1a;
+            color: white;
+            border-color: #1a1a1a;
+        }
+
+        .pricing-card {
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            border-color: #16a34a;
+            background: #f9fafb;
+        }
+
+        .pricing-card.selected {
+            border-color: #16a34a;
+            background: #f0fdf4;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .radio-button {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #d1d5db;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 2px;
+            transition: all 0.2s;
+        }
+
+        .pricing-card.selected .radio-button {
+            border-color: #16a34a;
+            background: #16a34a;
+            box-shadow: inset 0 0 0 4px white;
+        }
+
+        .card-title {
+            flex: 1;
+        }
+
+        .plan-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .discount-badge {
+            background: #16a34a;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .card-price {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 6px;
+            margin-left: 28px;
+        }
+
+        .price-current {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .price-original {
+            font-size: 13px;
+            color: #9ca3af;
+            text-decoration: line-through;
+        }
+
+        .card-sub-text {
+            font-size: 12px;
+            color: #6b7280;
+            margin-left: 28px;
+            margin-bottom: 10px;
+        }
+
+        .benefits-mini {
+            margin-left: 28px;
+            font-size: 11px;
+            line-height: 1.6;
+            color: #4b5563;
+        }
+
+        .benefits-mini div {
+            margin-bottom: 4px;
+        }
+
+        .benefits-mini::before {
+            content: "✓ ";
+            color: #16a34a;
+            font-weight: 700;
+        }
+
+        /* Footer */
+        .comparison-footer {
+            max-width: 1400px;
+            margin: 60px auto;
+            padding: 0 40px;
+        }
+
+        .improvements {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .improvement-col h3 {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .improvement-col.before h3 {
+            color: #dc2626;
+            border-bottom-color: #dc2626;
+        }
+
+        .improvement-col.after h3 {
+            color: #16a34a;
+            border-bottom-color: #16a34a;
+        }
+
+        .improvement-list {
+            list-style: none;
+        }
+
+        .improvement-list li {
+            padding: 12px 0;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #4b5563;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .improvement-list li:last-child {
+            border-bottom: none;
+        }
+
+        .improvement-list strong {
+            color: #1a1a1a;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        @media (max-width: 1024px) {
+            .wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .after-content {
+                grid-template-columns: 1fr;
+            }
+
+            .improvements {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="comparison-header">
+        <h1>Vigo MD Checkout Refinement</h1>
+        <p>Professional UX/UI Design Concept</p>
+    </div>
+
+    <div class="wrapper">
+        <!-- BEFORE -->
+        <div class="before">
+            <div class="section-label before-label">
+                <span class="icon-before"></span>
+                Before: Text-Heavy Design
+            </div>
+            <div class="before-content">
+                <div class="before-product-area">Product Image [Placeholder]</div>
+                <h2>Your V3 Prescription Plan Approved</h2>
+                <p class="dense-text"><strong>Your Goals</strong><br>
+                Brain + body in one potent dose — apomorphine engages arousal at the brain level, not just blood flow. Three actives in one sublingual dissolvable — for the moments that matter most.</p>
+                <p class="dense-text">Treatment is prescribed by a U.S.-licensed physician, dosed for your specific needs, and shipped privately to your door. With continuous 1:1 medical care and 24/7 access to the Vigo MD team.</p>
+                <p class="features-old">✓ Maximum-strength formulation<br>
+                ✓ 3-in-1 on-demand sublingual<br>
+                ✓ 10-15 minute sublingual onset<br>
+                ✓ Up to 36 hour window<br>
+                ✓ No insurance required<br>
+                ✓ 24/7 clinical support included</p>
+                <div class="price-section-old">
+                    <div class="price-label">Your price for first month:</div>
+                    <div class="price-amount">$99</div>
+                    <div class="price-desc">Regular price $149 • 4 weeks treatment</div>
+                </div>
+                <button class="cta-button">Continue to Payment</button>
+            </div>
+        </div>
+
+        <!-- AFTER -->
+        <div class="after">
+            <div class="section-label after-label">
+                <span class="icon-after"></span>
+                After: Clean Professional Design
+            </div>
+            <div class="after-content">
+                <!-- Product -->
+                <div class="product-showcase">
+                    <div class="product-image-area">Product Image</div>
+                    <div class="product-title">V3 On-Demand Stack</div>
+                </div>
+
+                <!-- Pricing -->
+                <div class="pricing-options">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active">Standard</button>
+                        <button class="tab-btn">Upgrade</button>
+                    </div>
+
+                    <!-- Option 1 -->
+                    <div class="pricing-card selected">
+                        <div class="card-header">
+                            <div class="radio-button"></div>
+                            <div class="card-title">
+                                <div class="plan-name">6 Doses Monthly</div>
+                            </div>
+                            <div class="discount-badge">Save $20</div>
+                        </div>
+                        <div class="card-price">
+                            <span class="price-current">$67</span>
+                            <span class="price-original">$87</span>
+                        </div>
+                        <div class="card-sub-text">$11.17 per dose</div>
+                        <div class="benefits-mini">
+                            <div>Medication included</div>
+                            <div>Doctor consult</div>
+                            <div>24/7 support</div>
+                        </div>
+                    </div>
+
+                    <!-- Option 2 -->
+                    <div class="pricing-card">
+                        <div class="card-header">
+                            <div class="radio-button"></div>
+                            <div class="card-title">
+                                <div class="plan-name">12 Doses Monthly</div>
+                            </div>
+                            <div class="discount-badge">Save $40</div>
+                        </div>
+                        <div class="card-price">
+                            <span class="price-current">$147</span>
+                            <span class="price-original">$187</span>
+                        </div>
+                        <div class="card-sub-text">$12.25 per dose</div>
+                        <div class="benefits-mini">
+                            <div>Medication included</div>
+                            <div>Doctor consult</div>
+                            <div>24/7 support</div>
+                        </div>
+                    </div>
+
+                    <button class="cta-button" style="margin-top: 8px;">Approve & Continue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="comparison-footer">
+        <div class="improvements">
+            <div class="improvement-col before">
+                <h3>Issues in Current Design</h3>
+                <ul class="improvement-list">
+                    <li><strong>Text-Heavy Layout</strong> Dense paragraphs difficult to scan</li>
+                    <li><strong>Small Typography</strong> Readability issue for older demographic</li>
+                    <li><strong>Poor Visual Hierarchy</strong> All information appears equal</li>
+                    <li><strong>No Clear Organization</strong> Benefits buried in copy</li>
+                    <li><strong>Cognitive Overload</strong> Too much to process at once</li>
+                    <li><strong>Unclear Decision Path</strong> Unclear what to do next</li>
+                </ul>
+            </div>
+
+            <div class="improvement-col after">
+                <h3>Solutions in Refined Design</h3>
+                <ul class="improvement-list">
+                    <li><strong>Product-First Layout</strong> Visual showcase + clear pricing</li>
+                    <li><strong>Larger, Readable Text</strong> Easy for all ages to read</li>
+                    <li><strong>Strong Visual Hierarchy</strong> Key information stands out</li>
+                    <li><strong>Organized by Priority</strong> One option per scannable card</li>
+                    <li><strong>Reduced Friction</strong> Only essential information shown</li>
+                    <li><strong>Clear CTAs</strong> Obvious next steps for conversion</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
