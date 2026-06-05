@@ -13,282 +13,284 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
-            padding: 30px 20px;
-            min-height: 100vh;
+            background: #fafafa;
+            padding: 40px 20px;
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        h1 {
+        .page-header {
             text-align: center;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-size: 36px;
+            margin-bottom: 50px;
+        }
+
+        .page-header h1 {
+            font-size: 32px;
             font-weight: 800;
-            letter-spacing: -1px;
+            color: #1a1a1a;
+            margin-bottom: 8px;
         }
 
-        .subtitle {
-            text-align: center;
-            color: #a0aec0;
-            margin-bottom: 40px;
-            font-size: 15px;
-            font-weight: 500;
+        .page-header p {
+            font-size: 16px;
+            color: #666;
         }
 
+        /* COMPARISON SECTION */
         .comparison {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 40px;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .mockup-wrapper {
+            position: relative;
+        }
+
+        .mockup-label {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            color: #666;
+        }
+
+        .mockup-label.before {
+            color: #d32f2f;
+        }
+
+        .mockup-label.after {
+            color: #2d6633;
         }
 
         .mockup {
             background: white;
-            border-radius: 20px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .mockup:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
-        }
-
-        .mockup-header {
-            background: linear-gradient(135deg, #222 0%, #333 100%);
-            color: white;
-            padding: 20px;
-            text-align: center;
-            font-weight: 700;
-            font-size: 16px;
-            letter-spacing: 0.5px;
-        }
-
-        .mockup-header.before {
-            background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
-        }
-
-        .mockup-header.after {
-            background: linear-gradient(135deg, #2d6633 0%, #1d4620 100%);
-        }
-
-        .mockup-content {
-            padding: 0;
-            max-height: 1200px;
-            overflow-y: auto;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            border: 1px solid #e8e8e8;
         }
 
         /* BEFORE VERSION */
-        .before-version {
-            padding: 20px;
+        .before-mockup {
+            padding: 30px;
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 15px;
+            font-size: 20px;
+            font-weight: 800;
             color: #1a1a1a;
+            margin-bottom: 20px;
         }
 
-        .urgency-bar {
+        .urgency {
             background: #2d6633;
             color: white;
             padding: 12px;
-            text-align: center;
+            border-radius: 6px;
             font-size: 12px;
             font-weight: 600;
-            margin-bottom: 20px;
-            border-radius: 4px;
+            text-align: center;
+            margin-bottom: 24px;
         }
 
         .headline {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
-            margin-bottom: 15px;
             color: #1a1a1a;
+            margin-bottom: 16px;
             line-height: 1.3;
         }
 
-        .dense-text {
+        .dense-paragraph {
             font-size: 13px;
-            line-height: 1.6;
+            line-height: 1.7;
             color: #555;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
         }
 
-        .dense-text strong {
-            color: #222;
-        }
-
-        .product-card-old {
+        .old-card {
             background: #f5f9f6;
-            border: 1px solid #d0d0d0;
-            padding: 15px;
+            padding: 16px;
             border-radius: 8px;
-            margin-bottom: 15px;
+            margin-bottom: 16px;
+            border: 1px solid #e0e0e0;
         }
 
-        .product-title-old {
-            font-size: 16px;
-            font-weight: 700;
-            color: #2d6633;
-            margin-bottom: 10px;
-        }
-
-        .price-old {
-            font-size: 22px;
-            font-weight: 700;
-            color: #2d6633;
-            margin-bottom: 10px;
-        }
-
-        .price-strike {
-            text-decoration: line-through;
-            color: #999;
+        .old-card-title {
             font-size: 14px;
-            margin-left: 8px;
+            font-weight: 700;
+            color: #2d6633;
+            margin-bottom: 8px;
         }
 
-        .features-list {
+        .old-features {
             font-size: 12px;
-            line-height: 1.8;
             color: #555;
+            line-height: 1.8;
         }
 
-        .cta-btn-old {
+        .old-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2d6633;
+            margin: 12px 0;
+        }
+
+        .old-btn {
             width: 100%;
-            padding: 14px;
+            padding: 13px;
             background: #2d6633;
             color: white;
             border: none;
             border-radius: 6px;
-            font-size: 14px;
             font-weight: 600;
+            font-size: 14px;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 16px;
         }
 
         /* AFTER VERSION */
-        .after-version {
-            padding: 20px;
+        .after-mockup {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 30px;
+            align-items: start;
         }
 
-        .headline-large {
-            font-size: 22px;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 8px;
-            line-height: 1.2;
-        }
-
-        .subheadline {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 25px;
-        }
-
-        .benefit-card {
-            background: linear-gradient(135deg, rgba(45, 102, 51, 0.08) 0%, rgba(0, 200, 140, 0.05) 100%);
-            border: 1.5px solid rgba(45, 102, 51, 0.2);
-            padding: 18px;
-            border-radius: 14px;
-            margin-bottom: 14px;
-            display: flex;
-            gap: 14px;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .benefit-card:hover {
-            background: linear-gradient(135deg, rgba(45, 102, 51, 0.12) 0%, rgba(0, 200, 140, 0.08) 100%);
-            border-color: rgba(45, 102, 51, 0.3);
-            transform: translateX(4px);
-        }
-
-        .benefit-icon {
-            font-size: 28px;
-            flex-shrink: 0;
-            line-height: 1;
-        }
-
-        .benefit-content {
-            flex: 1;
-        }
-
-        .benefit-title {
-            font-size: 15px;
-            font-weight: 600;
-            color: #2d6633;
-            margin-bottom: 4px;
-        }
-
-        .benefit-desc {
-            font-size: 13px;
-            color: #666;
-        }
-
-        .offer-banner {
-            background: linear-gradient(135deg, #2d6633 0%, #1d4620 100%);
-            border: none;
-            padding: 18px;
+        .product-section {
+            background: #f5f5f5;
+            padding: 24px;
             border-radius: 12px;
-            margin: 20px 0;
-            font-size: 15px;
-            font-weight: 700;
-            color: #fff;
-            box-shadow: 0 10px 30px rgba(45, 102, 51, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .offer-banner::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: shimmer 3s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { transform: translate(0, 0); }
-            50% { transform: translate(20px, 20px); }
-            100% { transform: translate(0, 0); }
-        }
-
-        .product-card-new {
-            background: #f5f9f6;
-            border: 1px solid #d0d0d0;
-            padding: 18px;
-            border-radius: 8px;
-            margin: 20px 0;
             text-align: center;
         }
 
-        .product-title-new {
+        .product-image {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #e8f5e0 0%, #f0f9ed 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            margin-bottom: 16px;
+        }
+
+        .product-name {
             font-size: 16px;
             font-weight: 700;
-            color: #2d6633;
+            color: #1a1a1a;
+        }
+
+        .pricing-section {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .tab-group {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 10px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab.active {
+            background: #1a1a1a;
+            color: white;
+            border-color: #1a1a1a;
+        }
+
+        .pricing-option {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 18px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .pricing-option:hover {
+            border-color: #2d6633;
+            background: #fafafa;
+        }
+
+        .pricing-option.selected {
+            border-color: #2d6633;
+            background: #f5f9f6;
+        }
+
+        .option-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             margin-bottom: 12px;
         }
 
-        .price-large {
-            font-size: 32px;
+        .radio {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #d0d0d0;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .pricing-option.selected .radio {
+            border-color: #2d6633;
+            box-shadow: inset 0 0 0 6px #2d6633;
+        }
+
+        .option-title {
+            font-size: 15px;
             font-weight: 700;
-            color: #2d6633;
-            margin-bottom: 8px;
+            color: #1a1a1a;
+            flex: 1;
+        }
+
+        .discount-badge {
+            background: #2d6633;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .option-price {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+            align-items: baseline;
+        }
+
+        .price-current {
+            font-size: 22px;
+            font-weight: 800;
+            color: #1a1a1a;
+        }
+
+        .price-original {
+            font-size: 14px;
+            color: #999;
+            text-decoration: line-through;
         }
 
         .price-desc {
@@ -296,108 +298,109 @@
             color: #666;
         }
 
-        .checklist {
+        .benefits-list {
             background: white;
-            padding: 16px;
-            border-radius: 6px;
-            margin: 15px 0;
+            border-radius: 8px;
+            padding: 12px 0;
+            margin-top: 12px;
         }
 
-        .check-item {
-            font-size: 13px;
-            color: #333;
+        .benefit-item {
+            display: flex;
+            gap: 8px;
             padding: 8px 0;
-            border-bottom: 1px solid #f0f0f0;
+            font-size: 12px;
+            color: #555;
+            padding-left: 12px;
+            padding-right: 12px;
         }
 
-        .check-item:last-child {
-            border-bottom: none;
-        }
-
-        .check-item::before {
-            content: "✓ ";
+        .benefit-item::before {
+            content: "✓";
             color: #2d6633;
-            font-weight: 700;
-            margin-right: 8px;
+            font-weight: 800;
+            flex-shrink: 0;
         }
 
-        .cta-btn-new {
+        .cta-button {
             width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, #2d6633 0%, #1d4620 100%);
+            padding: 14px;
+            background: #2d6633;
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             font-size: 15px;
             font-weight: 700;
             cursor: pointer;
-            margin-top: 15px;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(45, 102, 51, 0.2);
-            letter-spacing: 0.5px;
+            margin-top: 16px;
+            transition: all 0.2s;
         }
 
-        .cta-btn-new:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(45, 102, 51, 0.3);
-            background: linear-gradient(135deg, #1d4620 0%, #2d6633 100%);
+        .cta-button:hover {
+            background: #1d4620;
         }
 
-        .cta-btn-new:active {
-            transform: translateY(0px);
-        }
-
-        .differences {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
+        /* FOOTER SECTION */
+        .footer-section {
+            background: white;
+            border-radius: 16px;
             padding: 40px;
-            margin-top: 40px;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-            border: 1px solid rgba(255,255,255,0.3);
+            margin-top: 60px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            border: 1px solid #e8e8e8;
         }
 
-        .differences h2 {
+        .footer-section h2 {
             font-size: 22px;
-            margin-bottom: 25px;
-            color: #222;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 24px;
         }
 
-        .diff-grid {
+        .improvements-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 30px;
         }
 
-        .diff-section h3 {
-            font-size: 16px;
+        .improvement-column h3 {
+            font-size: 14px;
             font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .improvement-column.before h3 {
             color: #d32f2f;
-            margin-bottom: 15px;
+            border-bottom-color: #d32f2f;
         }
 
-        .diff-section.after h3 {
+        .improvement-column.after h3 {
             color: #2d6633;
+            border-bottom-color: #2d6633;
         }
 
-        .diff-list {
+        .improvement-list {
             list-style: none;
         }
 
-        .diff-list li {
-            padding: 10px 0;
+        .improvement-list li {
+            padding: 12px 0;
             font-size: 14px;
             line-height: 1.6;
-            border-bottom: 1px solid #f0f0f0;
             color: #555;
+            border-bottom: 1px solid #f0f0f0;
         }
 
-        .diff-list li:last-child {
+        .improvement-list li:last-child {
             border-bottom: none;
         }
 
-        .diff-list strong {
-            color: #222;
+        .improvement-list strong {
+            color: #1a1a1a;
             display: block;
             margin-bottom: 4px;
         }
@@ -407,217 +410,150 @@
                 grid-template-columns: 1fr;
             }
 
-            .diff-grid {
+            .after-mockup {
                 grid-template-columns: 1fr;
             }
-        }
 
-        .metrics {
-            background: linear-gradient(135deg, rgba(255,255,255,0.97) 0%, rgba(245, 250, 246, 0.95) 100%);
-            border-radius: 20px;
-            padding: 40px;
-            margin-top: 40px;
-            border: 2px solid #2d6633;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-        }
-
-        .metrics h2 {
-            font-size: 20px;
-            margin-bottom: 20px;
-            color: #222;
-        }
-
-        .metric-item {
-            background: linear-gradient(135deg, rgba(45, 102, 51, 0.05) 0%, rgba(0, 200, 140, 0.02) 100%);
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid rgba(45, 102, 51, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .metric-item:hover {
-            background: linear-gradient(135deg, rgba(45, 102, 51, 0.08) 0%, rgba(0, 200, 140, 0.05) 100%);
-            border-color: rgba(45, 102, 51, 0.2);
-        }
-
-        .metric-label {
-            font-size: 12px;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 6px;
-            font-weight: 600;
-        }
-
-        .metric-value {
-            font-size: 28px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #2d6633 0%, #1d4620 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            .improvements-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Vigo MD Checkout Refinement Concept</h1>
-        <p class="subtitle">Senior-Friendly Visual Redesign for Better Scannability</p>
+        <div class="page-header">
+            <h1>Vigo MD Checkout Refinement</h1>
+            <p>Modern, Clean Design for Better Conversions</p>
+        </div>
 
         <div class="comparison">
             <!-- BEFORE -->
-            <div class="mockup">
-                <div class="mockup-header before">❌ BEFORE - Text Heavy & Dense</div>
-                <div class="mockup-content">
-                    <div class="before-version">
+            <div class="mockup-wrapper">
+                <div class="mockup-label before">❌ BEFORE: Dense & Text-Heavy</div>
+                <div class="mockup">
+                    <div class="before-mockup">
                         <div class="logo">vigo MD</div>
-                        <div class="urgency-bar">APPROVAL VALID FOR 10:56</div>
+                        <div class="urgency">APPROVAL VALID FOR 10:56</div>
 
                         <div class="headline">tester's V3 prescription plan approval</div>
 
-                        <div class="dense-text">
+                        <div class="dense-paragraph">
                             <strong>YOUR GOALS</strong><br>
-                            Brain + body in one potent dose — apomorphine engages arousal at the brain level, not just blood flow.<br><br>
-                            Three actives in one sublingual dissolvable — for the moments that matter most.
+                            Brain + body in one potent dose — apomorphine engages arousal at the brain level, not just blood flow. Three actives in one sublingual dissolvable — for the moments that matter most.
                         </div>
 
-                        <div class="dense-text">
+                        <div class="dense-paragraph">
                             Treatment is prescribed by a U.S.-licensed physician, dosed for your specific needs, and shipped privately to your door. With continuous 1:1 medical care and 24/7 access to the Vigo MD team.
                         </div>
 
-                        <div class="dense-text">
-                            <strong>Your monthly price stays locked in — your dose may evolve, but your bill won't.</strong>
-                        </div>
-
-                        <div class="product-card-old">
-                            <div class="product-title-old">V3 — On-Demand Stack</div>
-                            <div class="price-old">$99 <span class="price-strike">$149</span></div>
-                            <div style="font-size: 12px; color: #666; margin-bottom: 10px;">PRICE INCLUDES: 4 weeks of medication · written prescription · doctor consult · 1:1 ongoing medical support · free discreet shipping</div>
-                            <div class="features-list">
-                                ✓ Maximum-strength formulation<br>
-                                ✓ Apomorphine + Sildenafil + Tadalafil (3-in-1)<br>
-                                ✓ 10-15 minute sublingual onset<br>
-                                ✓ No insurance required<br>
-                                ✓ 24/7 clinical support included
+                        <div class="old-card">
+                            <div class="old-card-title">V3 — On-Demand Stack</div>
+                            <div class="old-price">$99 <span style="font-size: 14px; color: #999; text-decoration: line-through; margin-left: 8px;">$149</span></div>
+                            <div class="old-features">
+                                ✓ Maximum-strength<br>
+                                ✓ 3-in-1 sublingual<br>
+                                ✓ 10-15 min onset<br>
+                                ✓ 24/7 support
                             </div>
                         </div>
 
-                        <button class="cta-btn-old">Continue to Payment</button>
+                        <button class="old-btn">Continue to Payment</button>
                     </div>
                 </div>
             </div>
 
             <!-- AFTER -->
-            <div class="mockup">
-                <div class="mockup-header after">✅ AFTER - Visual & Scannable</div>
-                <div class="mockup-content">
-                    <div class="after-version">
-                        <div class="logo">vigo MD</div>
-                        <div class="urgency-bar">APPROVAL VALID FOR 10:56</div>
+            <div class="mockup-wrapper">
+                <div class="mockup-label after">✅ AFTER: Clean & Modern</div>
+                <div class="mockup">
+                    <div class="after-mockup">
+                        <!-- LEFT: Product -->
+                        <div class="product-section">
+                            <div class="product-image">💊</div>
+                            <div class="product-name">V3<br>On-Demand Stack</div>
+                        </div>
 
-                        <div class="headline-large">Your V3 Plan Approved</div>
-                        <div class="subheadline">Personalized treatment ready to ship</div>
-
-                        <div class="benefit-card">
-                            <div class="benefit-icon">🧠</div>
-                            <div class="benefit-content">
-                                <div class="benefit-title">Brain & Body Together</div>
-                                <div class="benefit-desc">One potent dose, maximum effect</div>
+                        <!-- RIGHT: Pricing -->
+                        <div class="pricing-section">
+                            <div class="tab-group">
+                                <div class="tab active">La Dosis</div>
+                                <div class="tab">Upgrade Pack</div>
                             </div>
-                        </div>
 
-                        <div class="benefit-card">
-                            <div class="benefit-icon">⚡</div>
-                            <div class="benefit-content">
-                                <div class="benefit-title">10-15 Minute Onset</div>
-                                <div class="benefit-desc">No 30-60 min pill wait</div>
+                            <!-- Option 1 -->
+                            <div class="pricing-option selected">
+                                <div class="option-header">
+                                    <div class="radio"></div>
+                                    <div class="option-title">Suscripción Individual</div>
+                                    <div class="discount-badge">-€20</div>
+                                </div>
+                                <div class="option-price">
+                                    <span class="price-current">€67</span>
+                                    <span class="price-original">€87</span>
+                                </div>
+                                <div class="price-desc">30 porções • €2.90/porção</div>
+                                <div class="benefits-list">
+                                    <div class="benefit-item">€20 de descuento en tu primer mes</div>
+                                    <div class="benefit-item">Kit de bienvenida gratis</div>
+                                    <div class="benefit-item">Envío gratuito siempre</div>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="benefit-card">
-                            <div class="benefit-icon">🛡️</div>
-                            <div class="benefit-content">
-                                <div class="benefit-title">U.S. Licensed Doctors</div>
-                                <div class="benefit-desc">1:1 personalized prescription care</div>
+                            <!-- Option 2 -->
+                            <div class="pricing-option">
+                                <div class="option-header">
+                                    <div class="radio"></div>
+                                    <div class="option-title">Suscripción Doble</div>
+                                    <div class="discount-badge">-€20</div>
+                                </div>
+                                <div class="option-price">
+                                    <span class="price-current">€147</span>
+                                    <span class="price-original">€167</span>
+                                </div>
+                                <div class="price-desc">60 porções • €2.78/porção</div>
+                                <div class="benefits-list">
+                                    <div class="benefit-item">€40 de descuento en tu primer mes</div>
+                                    <div class="benefit-item">Kit de bienvenida gratis</div>
+                                    <div class="benefit-item">Envío gratuito siempre</div>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="offer-banner">
-                            ✓ 12-Dose Upgrade: Save 23% per dose
+                            <button class="cta-button">Continuar a Pago</button>
                         </div>
-
-                        <div class="product-card-new">
-                            <div class="product-title-new">V3 — On-Demand Stack</div>
-                            <div class="price-large">$99</div>
-                            <div class="price-desc">Includes everything you need</div>
-                        </div>
-
-                        <div class="checklist">
-                            <div class="check-item">4 weeks medication (6 doses)</div>
-                            <div class="check-item">Written prescription included</div>
-                            <div class="check-item">Doctor consultation</div>
-                            <div class="check-item">1:1 medical support</div>
-                            <div class="check-item">24/7 clinical access</div>
-                            <div class="check-item">Discreet private shipping</div>
-                            <div class="check-item">Pause or cancel anytime</div>
-                        </div>
-
-                        <button class="cta-btn-new">Approve & Continue</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- KEY DIFFERENCES -->
-        <div class="differences">
-            <h2>Key Improvements for 61-Year-Old Demographic</h2>
-            <div class="diff-grid">
-                <div class="diff-section">
-                    <h3>BEFORE: Issues</h3>
-                    <ul class="diff-list">
-                        <li><strong>Font Too Small</strong> Accessibility issue for reading</li>
+        <!-- IMPROVEMENTS -->
+        <div class="footer-section">
+            <h2>Key Design Improvements</h2>
+            <div class="improvements-grid">
+                <div class="improvement-column before">
+                    <h3>❌ Issues</h3>
+                    <ul class="improvement-list">
                         <li><strong>Text Walls</strong> Dense paragraphs hard to scan</li>
-                        <li><strong>No Visual Breaks</strong> Information overwhelming</li>
-                        <li><strong>Weak Hierarchy</strong> Hard to find key points</li>
-                        <li><strong>Icons Ignored</strong> Too small to matter</li>
+                        <li><strong>Small Font</strong> Accessibility issue for older users</li>
+                        <li><strong>Weak Hierarchy</strong> All information feels equal</li>
+                        <li><strong>Poor Organization</strong> Features buried in text</li>
+                        <li><strong>No Visual Breathing Room</strong> Overwhelming to read</li>
                         <li><strong>Cognitive Load</strong> Too much to process at once</li>
                     </ul>
                 </div>
 
-                <div class="diff-section after">
-                    <h3>AFTER: Solutions</h3>
-                    <ul class="diff-list">
-                        <li><strong>Larger Typography</strong> 15-22px for easy reading</li>
-                        <li><strong>Visual Cards</strong> One idea per card, scannable</li>
-                        <li><strong>Whitespace</strong> Breathing room between sections</li>
-                        <li><strong>Clear Hierarchy</strong> Headlines pop, benefits stand out</li>
-                        <li><strong>Bold Icons</strong> 28px icons guide attention</li>
-                        <li><strong>Simple Flow</strong> Scan → understand → act</li>
+                <div class="improvement-column after">
+                    <h3>✅ Solutions</h3>
+                    <ul class="improvement-list">
+                        <li><strong>Clean Layout</strong> Product image + clear pricing</li>
+                        <li><strong>Larger Typography</strong> Easy to read for all ages</li>
+                        <li><strong>Strong Hierarchy</strong> Price & benefits stand out</li>
+                        <li><strong>Smart Organization</strong> One option per card</li>
+                        <li><strong>Whitespace</strong> Clean, modern, uncluttered</li>
+                        <li><strong>Scannable</strong> Users understand quickly & act</li>
                     </ul>
                 </div>
             </div>
-        </div>
-
-        <!-- METRICS -->
-        <div class="metrics">
-            <h2>Expected Impact</h2>
-            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
-                <div class="metric-item">
-                    <div class="metric-label">Current Conversion</div>
-                    <div class="metric-value">15%</div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-label">Current Bump Attach</div>
-                    <div class="metric-value">50%</div>
-                </div>
-                <div class="metric-item">
-                    <div class="metric-label">Target Improvement</div>
-                    <div class="metric-value">+3-5%</div>
-                </div>
-            </div>
-            <p style="margin-top: 20px; font-size: 13px; color: #666; line-height: 1.6;">
-                <strong>Conservative estimate:</strong> By improving scannability and reducing cognitive load, we expect to see a modest 3-5% increase in conversion. The visual redesign maintains all conversion drivers while making the path to purchase clearer for a senior audience. Zero risk — same messaging, same flow, just presented better.
-            </p>
         </div>
     </div>
 </body>
